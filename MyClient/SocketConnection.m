@@ -94,9 +94,23 @@
         
     }
 }
-
+//-(BOOL)IsValid{
+//    return m_bValid;
+//}
 -(void)Recv{
-    
+    Byte *temp = NULL;
+    memset(temp, 0, 10240);
+    BOOL recv_error = NO;
+    while (recv_error== NO && [self IsValid] ) {
+        @try {
+            
+            int len = m_input.re
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+    }
 }
 
 -(BOOL)initWith:(NSString *)server_addrString :(int)port{
