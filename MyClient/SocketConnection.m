@@ -161,7 +161,7 @@
 -(BOOL)setSocketOP:(int)mSock{
 
     @try {
-//        setsockopt(mSock, SQL_SO, <#int#>, <#const void *#>, <#socklen_t#>)
+//        setsockopt(mSock, SQL_SO, int, const void *, socklen_t)
         int reuseOn = 1;
 
         int  status = setsockopt(mSock, SOL_SOCKET, SO_REUSEADDR, &reuseOn, sizeof(reuseOn));

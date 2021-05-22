@@ -39,6 +39,9 @@ static int TIME_OUT_VAL = 1000;
 -(void)Connection:(SocketMessageHandler *)handler;
 -(void)ConnectionWS:(int)socket;
 
+
+-(void)sendPacket:(SocketPacketData*)packet;
+
 @end
 
  

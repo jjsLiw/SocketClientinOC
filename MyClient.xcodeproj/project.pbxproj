@@ -28,6 +28,7 @@
 		AFF12A4D2658E0A4000DFE7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFF12A4B2658E0A4000DFE7E /* LaunchScreen.storyboard */; };
 		AFF12A502658E0A4000DFE7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF12A4F2658E0A4000DFE7E /* main.m */; };
 		AFF12A562658E0B6000DFE7E /* JJSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF12A342658DFDB000DFE7E /* JJSTextView.m */; };
+		AFF12A5E2658FA71000DFE7E /* SocketMyLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF12A5D2658FA71000DFE7E /* SocketMyLogic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		AFF12A4C2658E0A4000DFE7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFF12A4E2658E0A4000DFE7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFF12A4F2658E0A4000DFE7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AFF12A5C2658FA71000DFE7E /* SocketMyLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketMyLogic.h; sourceTree = "<group>"; };
+		AFF12A5D2658FA71000DFE7E /* SocketMyLogic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketMyLogic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				043EB2822650E11F00CC5569 /* SocketPacketListener.m */,
 				043EB2852650E13600CC5569 /* SocketMessageHandler.h */,
 				043EB2862650E13600CC5569 /* SocketMessageHandler.m */,
+				AFF12A5C2658FA71000DFE7E /* SocketMyLogic.h */,
+				AFF12A5D2658FA71000DFE7E /* SocketMyLogic.m */,
 				043EB2892650E1B800CC5569 /* SocketPacketData.h */,
 				043EB28A2650E1B800CC5569 /* SocketPacketData.m */,
 				043EB28D2650E26D00CC5569 /* SocketByteBuffer.h */,
@@ -286,6 +291,7 @@
 				043EB2872650E13600CC5569 /* SocketMessageHandler.m in Sources */,
 				043EB27F2650E10700CC5569 /* SocketConnection.m in Sources */,
 				043EB28F2650E26D00CC5569 /* SocketByteBuffer.m in Sources */,
+				AFF12A5E2658FA71000DFE7E /* SocketMyLogic.m in Sources */,
 				043EB27A2650E0F400CC5569 /* SocketClient.m in Sources */,
 				8B55C6D51E2D06750069B90F /* AppDelegate.m in Sources */,
 				AFF12A352658DFDB000DFE7E /* JJSTextView.m in Sources */,
