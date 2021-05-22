@@ -19,7 +19,7 @@
     // Override point for customization after application launch.
     
     
-    [self doatest];
+//    [self doatest];
     
     return YES;
 }
@@ -29,12 +29,13 @@
     
   __block  BOOL isLock = NO;
     dispatch_queue_t queue = dispatch_queue_create("labelqueue", DISPATCH_QUEUE_SERIAL);
-    for (int i = 0; i<10; i++) {
-    
-        [lock lock];
-        isLock = YES;
-        dispatch_sync(queue, ^{
-           
+    dispatch_async(queue, ^{
+        
+        for (int i = 0; i<10; i++) {
+            
+            [lock lock];
+            isLock = YES;
+            
             NSLog(@"targe start:%d",i);
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -42,14 +43,15 @@
                 [lock unlock];
                 isLock = NO;
             });
-        });
-        
-        do {
-            NSLog(@"dont dont anythign herer ");
-        } while (isLock);
-        
-        
-    }
+            
+            
+            do {
+                NSLog(@"dont dont anythign herer ");
+            } while (isLock);
+            
+            
+        }
+    });
 }
 
 

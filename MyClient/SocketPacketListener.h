@@ -13,7 +13,7 @@
 #include <arpa/inet.h>
 
 #import "SocketMessageHandler.h"
-#import "SocketPacketData.m"
+#import "SocketPacketData.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

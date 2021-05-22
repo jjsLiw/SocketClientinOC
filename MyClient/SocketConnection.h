@@ -12,7 +12,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#import "SocketPacketListener.m"
+#import "SocketPacketListener.h"
 #import "SocketByteBuffer.h"
 #import "SocketPacketData.h"
 #import "SocketMessageHandler.h"

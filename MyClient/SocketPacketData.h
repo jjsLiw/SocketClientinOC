@@ -28,30 +28,17 @@
 @end
 
 @interface SocketPacketData : NSObject
-{
-    
-@public
-    int m_row;
-    int m_col;
-    NSMutableDictionary *m_map;
-    NSMutableArray *m_array;//为何会冲突？dublelicapte?
-    NSString *INVALID_STRING_VAL;
-    
-    
-@private
-    BOOL m_bResult;
-    int m_magic;
-    int m_len;
-    int m_op;
-    int m_param;
-    
-}
+
 
 //106 25
 
 @property (nonatomic, strong) NSMutableArray<NSData*>  * m_byte_buf;
 
-
+@property (nonatomic, assign) int m_row;
+@property (nonatomic, assign) int m_col;
+@property (nonatomic, strong) NSMutableDictionary *m_map;
+@property (nonatomic, strong) NSMutableArray *m_array;//为何会冲突？dublelicapte?
+@property (nonatomic, strong) NSString *INVALID_STRING_VAL;
 
 -(int)getM_magic;
 -(void)setM_magic:(int)magic;

@@ -31,7 +31,24 @@ static int HEAD_LEN = 4+4+4+4;
 
 
 @implementation SocketPacketData
-
+{
+    
+//@public
+//    int _m_row;
+//    int _m_col;
+//    NSMutableDictionary *_m_map;
+//    NSMutableArray *_m_array;//为何会冲突？dublelicapte?
+//    NSString *_INVALID_STRING_VAL;
+    
+    
+//@private
+    BOOL m_bResult;
+    int m_magic;
+    int m_len;
+    int m_op;
+    int m_param;
+    
+}
 
 
 -(int)getM_magic{
@@ -49,10 +66,10 @@ static int HEAD_LEN = 4+4+4+4;
 
 -(void)PacketData:(int)op{
     m_op = op;
-            m_row = m_col = 0;
-    m_map = [NSMutableDictionary dictionary];//  new HashMap<String,String>();
-    m_array = [NSMutableArray array];// new Vector<String>();
-    INVALID_STRING_VAL =@"";// new String("");
+    _m_row = _m_col = 0;
+    _m_map = [NSMutableDictionary dictionary];//  new HashMap<String,String>();
+    _m_array = [NSMutableArray array];// new Vector<String>();
+    _INVALID_STRING_VAL =@"";// new String("");
     self.m_byte_buf = [NSMutableArray array ] ;//new ArrayList<byte[]>();
 }
 
@@ -116,8 +133,8 @@ static int HEAD_LEN = 4+4+4+4;
     NSLog(@"m_len+=%d",m_len);
     NSLog(@"m_op+=%d",m_op);
     NSLog(@"m_param+=%d",m_param);
-    NSLog(@"dic = %@",m_map);
-    NSLog(@"dim_arrayc = %@",m_array);
+    NSLog(@"dic = %@",_m_map);
+    NSLog(@"dim_arrayc = %@",_m_array);
 }
 -(void)setPacketHeadLen:(int)len{
     m_len = len;
@@ -138,24 +155,24 @@ static int HEAD_LEN = 4+4+4+4;
 }
 -(void)SerializeBody:(SocketByteBuffer*)buf{
     
-    int map_size  = (int)m_map.allKeys.count;
+    int map_size  = (int)_m_map.allKeys.count;
     [buf putInt:map_size];
     if (map_size>0) {
-        for (NSString *key in m_map.allKeys) {
+        for (NSString *key in _m_map.allKeys) {
             
-            NSString *value = m_map[key];
+            NSString *value = _m_map[key];
             
             [buf putString:key];
             [buf putString:value];
         }
     }
     
-    [buf putInt:m_row];
-    [buf putInt:m_col];
-    if (m_row>0 && m_col > 0) {
-        for (int i = 0; i< m_row; i++) {
-            for (int j = 0 ; j<m_col; j++) {
-                [buf putString:m_array[[self CalculPos:i :j]]];
+    [buf putInt:_m_row];
+    [buf putInt:_m_col];
+    if (_m_row>0 && _m_col > 0) {
+        for (int i = 0; i< _m_row; i++) {
+            for (int j = 0 ; j< _m_col; j++) {
+                [buf putString:_m_array[[self CalculPos:i :j]]];
             }
         }
     }
@@ -178,23 +195,23 @@ static int HEAD_LEN = 4+4+4+4;
         for (int i = 0; i< map_size; i++) {
             NSString *key = buf.getString;
             NSString *value =buf.getString;
-            [m_map setValue:value forKey:key];
+            [_m_map setValue:value forKey:key];
         }
     }
     
-    m_row = buf.getInt;
-    m_col = buf.getInt;
+    _m_row = buf.getInt;
+    _m_col = buf.getInt;
     
     
-    if (m_row >0 && m_col > 0) {
-        for (int i = 0; i< m_row; i++) {
-            for (int j = 0; j< m_col; j++) {
+    if (_m_row >0 && _m_col > 0) {
+        for (int i = 0; i< _m_row; i++) {
+            for (int j = 0; j< _m_col; j++) {
                 NSString *val = buf.getString;
-                [m_array addObject:val];
+                [_m_array addObject:val];
             }
         }
     }else{
-        m_row = m_col = 0;
+        _m_row = _m_col = 0;
     }
     
     int buf_array_size = buf.getInt;
@@ -211,17 +228,17 @@ static int HEAD_LEN = 4+4+4+4;
 /////////////////关于map的操作/////////////////////////////////////////////////////
 -(void)addMapElement:(NSString*)key :(NSString*)val{
     
-    [m_map setValue:val forKey:key];
+    [_m_map setValue:val forKey:key];
 }
 
 -(NSString*)getMapString:(NSString*)key{
-    return [m_map valueForKey:key];
+    return [_m_map valueForKey:key];
 }
 -(BOOL)ContainKey:(NSString*)key{
-    return [[m_map allKeys]containsObject:key];
+    return [[_m_map allKeys]containsObject:key];
 }
 -(int)getMapSize{
-    return (int)[m_map allKeys].count;
+    return (int)[_m_map allKeys].count;
 }
 -(void)AddByteArray:(Byte*)c{
 //    Byte *bute =  buf.getByteArray;
@@ -242,18 +259,18 @@ static int HEAD_LEN = 4+4+4+4;
     return nil;
 }
 -(int)getRow{
-    return m_row;
+    return _m_row;
 }
 -(int)getCol{
-    return m_col;
+    return _m_col;
 }
 -(int)setCol:(int)col{
-//    m_col = col;
+//    _m_col = col;
     int ret = -1;
     if (col >0 ) {
-        [m_array removeAllObjects];
-        m_row = 0;
-        m_col = col;
+        [_m_array removeAllObjects];
+        _m_row = 0;
+        _m_col = col;
         ret = 0;
     }
     return ret;
@@ -261,11 +278,11 @@ static int HEAD_LEN = 4+4+4+4;
 -(int)AddRow{
      
     int ret = -1;
-    if (m_col > 0) {
-        ret = m_row;
-        ++m_row;
-        for (int i = 0; i< m_col ; i++) {
-            [m_array addObject:@""];
+    if (_m_col > 0) {
+        ret = _m_row;
+        ++_m_row;
+        for (int i = 0; i< _m_col ; i++) {
+            [_m_array addObject:@""];
         }
     }
     
@@ -279,17 +296,17 @@ static int HEAD_LEN = 4+4+4+4;
     }
     
     int pos  = [self CalculPos:row :col];
-    m_array [pos] = val;
+    _m_array [pos] = val;
     
     return 0;
 }
 -(NSString*)getArrayValue:(int)row :(int)col  {
     
     if (false == [self IsPosValid:row :col]) {
-        return INVALID_STRING_VAL;;
+        return _INVALID_STRING_VAL;;
     }
     
-    return m_array[[self CalculPos:row :col]];
+    return _m_array[[self CalculPos:row :col]];
     
 }
     
@@ -297,11 +314,11 @@ static int HEAD_LEN = 4+4+4+4;
     if ( row< 0 || col <0) {
         return false;
     }
-    if (row>= m_row || col >= m_col) {
+    if (row>= _m_row || col >= _m_col) {
         return false;
     }
     int pos = [self CalculPos:row :col];
-    if (pos > m_array.count) {
+    if (pos > _m_array.count) {
         return false;
     }
     return true;
@@ -315,7 +332,7 @@ static int HEAD_LEN = 4+4+4+4;
         
     }
     else{
-        pos = row*m_col + col;
+        pos = row*_m_col + col;
     }
     
     return pos;
