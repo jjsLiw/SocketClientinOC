@@ -30,15 +30,15 @@
 @interface SocketPacketData : NSObject
 {
     
-    @public
+@public
     int m_row;
-   int m_col;
+    int m_col;
     NSMutableDictionary *m_map;
-    NSMutableArray *m_array;
+    NSMutableArray *m_array;//为何会冲突？dublelicapte?
     NSString *INVALID_STRING_VAL;
     
     
-    @private
+@private
     BOOL m_bResult;
     int m_magic;
     int m_len;
@@ -47,7 +47,7 @@
     
 }
 
-
+//106 25
 
 @property (nonatomic, strong) NSMutableArray<NSData*>  * m_byte_buf;
 
@@ -87,7 +87,7 @@
 -(Byte*)GetByteArray:(int)pos;
 -(int)getRow;
 -(int)getCol;
--(void)setCol:(int)col;
+-(int)setCol:(int)col;
 -(int)AddRow;
 -(int)setArrayValue:(int)row :(int)col val:(NSString*)val;
 -(BOOL)IsPosValid:(int)row : (int)col;

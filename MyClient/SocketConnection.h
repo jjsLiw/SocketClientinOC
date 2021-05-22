@@ -15,13 +15,15 @@
 #import "SocketPacketListener.m"
 #import "SocketByteBuffer.h"
 #import "SocketPacketData.h"
+#import "SocketMessageHandler.h"
+
 static int TIME_OUT_VAL = 1000;
 
-NS_ASSUME_NONNULL_BEGIN
+ 
 
 @interface SocketConnection : SocketPacketListener
 {
-    @private
+@private
     BOOL m_bValid;
     int m_sock;
     
@@ -39,4 +41,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+ 

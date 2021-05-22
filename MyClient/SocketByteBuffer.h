@@ -69,8 +69,6 @@ static int BUF_LEN = 1024*10*10;
 -(int)CheckReadValid:(int)len;
 
 
-
-
 @end
 
 NS_ASSUME_NONNULL_END

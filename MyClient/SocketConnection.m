@@ -104,7 +104,7 @@
     while (recv_error== NO && [self IsValid] ) {
         @try {
             
-            int len = m_input.re
+//            int len = m_input.re
         } @catch (NSException *exception) {
             
         } @finally {

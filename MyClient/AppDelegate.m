@@ -17,7 +17,39 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [self doatest];
+    
     return YES;
+}
+-(void)doatest{
+    
+    NSLock *lock = [[NSLock alloc]init];
+    
+  __block  BOOL isLock = NO;
+    dispatch_queue_t queue = dispatch_queue_create("labelqueue", DISPATCH_QUEUE_SERIAL);
+    for (int i = 0; i<10; i++) {
+    
+        [lock lock];
+        isLock = YES;
+        dispatch_sync(queue, ^{
+           
+            NSLog(@"targe start:%d",i);
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSLog(@" end this i :%d",i);
+                [lock unlock];
+                isLock = NO;
+            });
+        });
+        
+        do {
+            NSLog(@"dont dont anythign herer ");
+        } while (isLock);
+        
+        
+    }
 }
 
 
