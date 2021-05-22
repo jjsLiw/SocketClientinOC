@@ -54,8 +54,8 @@
 }
 
 
--(int)start:(NSString *)server_addr :(int)port{
-    if (false== [self initWith:server_addr :port]) {
+-(int)start:(NSString *)server_addr withPort:(int)port{
+    if (false== [self initWith:server_addr withPort :port]) {
         
         return -1;
     }
@@ -113,8 +113,7 @@
     }
 }
 
--(BOOL)initWith:(NSString *)server_addrString :(int)port{
-    
+-(BOOL)initWith:(NSString *)server_addrString withPort:(int)port{
     __block BOOL _initb;
     int server_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket == -1) {
@@ -173,6 +172,28 @@
     } @finally {
         
         return m_bValid;
+    }
+}
+
+-(void)close{
+//    try
+//            {
+//                m_bValid = false;
+//                m_sock.close();
+//            }
+//            catch(IOException e)
+//            {
+//                System.err.println(e.getMessage());
+//            }
+    
+    @try {
+        m_bValid = NO;
+
+        
+    } @catch (NSException *exception) {
+        <#Handle an exception thrown in the @try block#>
+    } @finally {
+        <#Code that gets executed whether or not an exception is thrown#>
     }
 }
 @end

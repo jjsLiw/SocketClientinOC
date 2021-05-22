@@ -42,6 +42,13 @@ static int TIME_OUT_VAL = 1000;
 
 -(void)sendPacket:(SocketPacketData*)packet;
 
+-(int)start:(NSString *)server_addr withPort:(int)port;
+
+-(BOOL)initWith:(NSString *)server_addrString withPort:(int)port;
+
+-(void)close;
+
+
 @end
 
  

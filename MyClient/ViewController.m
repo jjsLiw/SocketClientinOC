@@ -10,7 +10,15 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+
+
+#import "SocketClient.h"
+
+
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    
+}
 //服务器socket
 @property (nonatomic,assign)int server_socket;
 
@@ -44,6 +52,18 @@
     self.onlineTable.delegate = self;
     self.onlineTable.dataSource = self;
     [self.view addSubview:self.onlineTable];
+    
+    
+    [self initNewStyle];
+    
+//    [self doOldStyleForConnect];
+    
+}
+-(void)initNewStyle{
+    
+}
+
+-(void)doOldStyleForConnect{
     
     int server_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket == -1) {

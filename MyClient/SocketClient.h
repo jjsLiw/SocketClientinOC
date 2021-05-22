@@ -11,10 +11,28 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-NS_ASSUME_NONNULL_BEGIN
+
+#import "SocketConnection.h"
+#import "SocketPacketListener.h"
+#import "SocketMessageHandler.h"
+#import "SocketMyLogic.h"
+#import "SocketPacketData.h"
+#import "SocketByteBuffer.h"
+
+ 
 
 @interface SocketClient : NSObject
+{
+    SocketConnection* connect;
+    SocketMyLogic *logic;
+    NSString *ip;
+    int port;
+    
+}
+
+-(instancetype)initWith:(NSString *)ip port:(int )port;
+
 
 @end
 
-NS_ASSUME_NONNULL_END
+ 
