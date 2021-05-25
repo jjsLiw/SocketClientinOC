@@ -176,24 +176,22 @@
 }
 
 -(void)close{
-//    try
-//            {
-//                m_bValid = false;
-//                m_sock.close();
-//            }
-//            catch(IOException e)
-//            {
-//                System.err.println(e.getMessage());
-//            }
+    //    try
+    //            {
+    //                m_bValid = false;
+    //                m_sock.close();
+    //            }
+    //            catch(IOException e)
+    //            {
+    //                System.err.println(e.getMessage());
+    //            }
     
     @try {
         m_bValid = NO;
-
+        
         
     } @catch (NSException *exception) {
-        <#Handle an exception thrown in the @try block#>
     } @finally {
-        <#Code that gets executed whether or not an exception is thrown#>
     }
 }
 @end
